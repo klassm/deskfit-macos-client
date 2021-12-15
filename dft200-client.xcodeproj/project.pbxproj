@@ -13,11 +13,13 @@
 		5B2C72DD263468B900CE4F88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C72DC263468B900CE4F88 /* Assets.xcassets */; };
 		5B2C72E0263468B900CE4F88 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B2C72DF263468B900CE4F88 /* Preview Assets.xcassets */; };
 		5B2C72ED263469DD00CE4F88 /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C72EC263469DD00CE4F88 /* DeviceView.swift */; };
+		5B43D84E267F761700A16916 /* RepeatingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B43D84D267F761700A16916 /* RepeatingTimer.swift */; };
 		5B47EB182647CFAA00302145 /* GoogleOAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B47EB172647CFAA00302145 /* GoogleOAuth.swift */; };
 		5B47EB1A2647D73A00302145 /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B47EB192647D73900302145 /* OAuth2.framework */; };
 		5B47EB1B2647D73A00302145 /* OAuth2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B47EB192647D73900302145 /* OAuth2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5B47EB1F2648015500302145 /* LoginLogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B47EB1E2648015500302145 /* LoginLogoutButton.swift */; };
 		5B47EB212648032800302145 /* GoogleFitFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B47EB202648032800302145 /* GoogleFitFacade.swift */; };
+		5B645D6F2660DF32003B03D7 /* WorkoutStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B645D6E2660DF32003B03D7 /* WorkoutStateView.swift */; };
 		5B766D0A26430E1800FFC606 /* Embassy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B766D0926430E1800FFC606 /* Embassy.framework */; };
 		5B766D0B26430E1800FFC606 /* Embassy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B766D0926430E1800FFC606 /* Embassy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5B8ACDF8263B28D1003BE2F2 /* DFT200.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8ACDF7263B28D1003BE2F2 /* DFT200.swift */; };
@@ -62,10 +64,12 @@
 		5B2C72E1263468B900CE4F88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B2C72E2263468B900CE4F88 /* dft200_client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = dft200_client.entitlements; sourceTree = "<group>"; };
 		5B2C72EC263469DD00CE4F88 /* DeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceView.swift; sourceTree = "<group>"; };
+		5B43D84D267F761700A16916 /* RepeatingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingTimer.swift; sourceTree = "<group>"; };
 		5B47EB172647CFAA00302145 /* GoogleOAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleOAuth.swift; sourceTree = "<group>"; };
 		5B47EB192647D73900302145 /* OAuth2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuth2.framework; path = Carthage/Build/Mac/OAuth2.framework; sourceTree = "<group>"; };
 		5B47EB1E2648015500302145 /* LoginLogoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLogoutButton.swift; sourceTree = "<group>"; };
 		5B47EB202648032800302145 /* GoogleFitFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleFitFacade.swift; sourceTree = "<group>"; };
+		5B645D6E2660DF32003B03D7 /* WorkoutStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutStateView.swift; sourceTree = "<group>"; };
 		5B766D0926430E1800FFC606 /* Embassy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Embassy.framework; path = Carthage/Build/Mac/Embassy.framework; sourceTree = "<group>"; };
 		5B8ACDF7263B28D1003BE2F2 /* DFT200.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFT200.swift; sourceTree = "<group>"; };
 		5B9E0E4A263560CE0087ECC0 /* BLEConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEConnection.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				5BA1724E263ECF720010E483 /* RunningView.swift */,
 				5BA17250263ED5670010E483 /* StoppedOrPauseView.swift */,
 				5B47EB1E2648015500302145 /* LoginLogoutButton.swift */,
+				5B645D6E2660DF32003B03D7 /* WorkoutStateView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 				5B47EB172647CFAA00302145 /* GoogleOAuth.swift */,
 				5B47EB202648032800302145 /* GoogleFitFacade.swift */,
 				5BA4E9F62649A2E00056CA99 /* StepsUploader.swift */,
+				5B43D84D267F761700A16916 /* RepeatingTimer.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -267,6 +273,7 @@
 				5BA17256263EEF5A0010E483 /* FileSystem.swift in Sources */,
 				5B2C72ED263469DD00CE4F88 /* DeviceView.swift in Sources */,
 				5BA17249263EBBDC0010E483 /* WaitingForTreadmillView.swift in Sources */,
+				5B645D6F2660DF32003B03D7 /* WorkoutStateView.swift in Sources */,
 				5BA1724D263EC1680010E483 /* DeviceState.swift in Sources */,
 				5B9E0E4B263560CE0087ECC0 /* BLEConnection.swift in Sources */,
 				5B2C72D9263468B800CE4F88 /* dft200_clientApp.swift in Sources */,
@@ -281,6 +288,7 @@
 				5BA17251263ED5670010E483 /* StoppedOrPauseView.swift in Sources */,
 				5B8ACDF8263B28D1003BE2F2 /* DFT200.swift in Sources */,
 				5BA1724F263ECF720010E483 /* RunningView.swift in Sources */,
+				5B43D84E267F761700A16916 /* RepeatingTimer.swift in Sources */,
 				5B15903D2641BEEC0039C334 /* HttpApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

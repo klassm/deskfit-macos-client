@@ -35,7 +35,6 @@ class GoogleOAuth: OAuth2DataLoader, ObservableObject {
     }
     
     func auth() {
-        
         self.attemptToAuthorize { authParameters, error in
             if let params = authParameters {
                 print("Authorized! Access token is in `oauth2.accessToken`")

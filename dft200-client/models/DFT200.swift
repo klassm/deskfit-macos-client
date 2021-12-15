@@ -99,6 +99,7 @@ open class DFT200: NSObject, CBPeripheralDelegate, ObservableObject {
     }
     
     public func updateStatus() {
+        NSLog("Updating device status");
         self.executeCommand(command: 0x00)
     }
     

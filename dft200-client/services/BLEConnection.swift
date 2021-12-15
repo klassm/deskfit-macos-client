@@ -28,7 +28,7 @@ open class BLEConnection: NSObject, CBCentralManagerDelegate, ObservableObject {
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if (central.state == .poweredOn) {
             print("Scanning for devices", BLEConnection.bleServiceUUID);
-            self.centralManager.scanForPeripherals(withServices: nil, options: nil)
+            self.centralManager.scanForPeripherals(withServices: [BLEConnection.bleServiceUUID], options: nil)
         } else {
             self.centralManager.stopScan()
         }

@@ -97,7 +97,7 @@ class GoogleFitFacade {
                 do {
                     let data = try decoder.decode(DataSourceListResponse.self, from: result.data!)
                     let ids = data.dataSource
-                        .filter({stream in stream.dataStreamId.contains("dft200") })
+                        .filter({stream in stream.dataStreamId.contains("deskfit") })
                         .map({stream in stream.dataStreamId })
                     callback(ids)
                 } catch {
@@ -122,9 +122,9 @@ class GoogleFitFacade {
                 manufacturer: "Deskfit",
                 model: "DFT200",
                 type: "unknown",
-                uid: "dft200",
+                uid: "deskfit",
                 version: "1"
-            ), type: "derived")
+            ), type: "raw")
         
         let jsonEncoder = JSONEncoder()
         let jsonDecoder = JSONDecoder()
@@ -176,7 +176,7 @@ class GoogleFitFacade {
         let id = "dft200_session_\(startTimeMillis)-\(endTimeMillis)"
         let jsonEncoder = JSONEncoder()
         
-        let session = WorkoutSessionPutData(id: id, name: "DFT200", description: "", startTimeMillis: startTimeMillis, endTimeMillis: endTimeMillis, version: 1, modifiedTimeMillis: endTimeMillis, application: application(), activityType: 58, activeTimeMillis: endTimeMillis - startTimeMillis)
+        let session = WorkoutSessionPutData(id: id, name: "Deskfit", description: "", startTimeMillis: startTimeMillis, endTimeMillis: endTimeMillis, version: 1, modifiedTimeMillis: endTimeMillis, application: application(), activityType: 58, activeTimeMillis: endTimeMillis - startTimeMillis)
         
         let json = try? jsonEncoder.encode(session)
         self.googleOAuth.googleApiRequest(path: "/fitness/v1/users/me/sessions/\(id)", method: "PUT", data: json, callback: { response in

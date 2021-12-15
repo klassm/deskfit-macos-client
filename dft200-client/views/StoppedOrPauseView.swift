@@ -7,11 +7,14 @@ struct StoppedOrPausedView: View {
     var device: DFT200
 
     var body: some View {
-        HStack {
-            Button(action: {
-                self.device.start()
-            }) {
-                Text("Start")
+        VStack {
+            WorkoutStateView()
+            HStack {
+                Button(action: {
+                    self.device.start()
+                }) {
+                    Text("Start")
+                }
             }
         }
     }

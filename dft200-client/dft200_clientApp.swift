@@ -16,30 +16,45 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var bleConnection = BLEConnection()
     private var googleOAuth = GoogleOAuth()
     private var stepsUploader: StepsUploader
+    private var updateTimer: RepeatingTimer? = nil;
+
+    var popover: NSPopover!
+    var statusBarItem: NSStatusItem!
+    
     
     override init() {
         self.stepsUploader = StepsUploader(googleFitFacade: GoogleFitFacade(self.googleOAuth))
+        
         super.init()
+        self.updateTimer = RepeatingTimer(interval: 5, eventHandler: {
+            self.bleConnection.device?.updateStatus()
+        })
         bleConnection.callback = { oldState, newState in self.workout.update(oldState, newState) }
         workout.onChangeCallback = {
             change in DispatchQueue.global(qos: .userInitiated).async {
                 self.stepsUploader.handleChange(change)
             }
         }
+        
+        self.updateTimer?.start();
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(receiveSleepNotification), name: NSWorkspace.willSleepNotification, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(receiveWakeNotification), name: NSWorkspace.didWakeNotification, object: nil)
     }
     
-    var popover: NSPopover!
-    var statusBarItem: NSStatusItem!
+    @objc func receiveSleepNotification(sender: AnyObject){
+        NSLog("Reveived sleep notification, stopping timer");
+        self.updateTimer?.stop();
+    }
+
+    @objc func receiveWakeNotification(sender: AnyObject){
+        NSLog("Reveived wake notification, starting timer");
+        self.updateTimer?.start()
+    }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         DispatchQueue.global(qos: .userInitiated).async {
             startHttpServer(bleConnection: self.bleConnection)
         }
-
-        let timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (t) in
-            self.bleConnection.device?.updateStatus()
-        }
-        RunLoop.main.add(timer, forMode: .common)
         
         let view = NSHostingView(rootView: ContentView()
                                     .environmentObject(workout)
