@@ -3,10 +3,16 @@ import SwiftUI
 struct FooterView: View {
     @EnvironmentObject var bleConnection: BLEConnection
     @EnvironmentObject var workout: Workout
+    @Environment(\.openURL) var openURL
     
     var body: some View {
         HStack {
             Spacer()
+            Button(action: {
+                openURL(URL(string: "https://deskfit-macos-client-stats.netlify.app")!)
+            }) {
+                Text("Stats")
+            }
             LoginLogoutButton()
             Button(action: {
                 bleConnection.stop()

@@ -7,6 +7,12 @@ struct WorkoutSaveData: Codable {
     var date: Date
 }
 
+
+struct WorkoutsSaveData: Codable {
+    var workouts: [WorkoutSaveData]
+}
+
+
 public struct Change {
     var oldTime: Date
     var newTime: Date
@@ -77,29 +83,43 @@ class Workout: ObservableObject {
     
     
     public func save() {
+        
         let workoutData = WorkoutSaveData(steps: self.steps, meters: self.distanceMeters, date: self.lastUpdateTime)
+        let withoutToday = loadAll().filter { !Calendar.current.isDateInToday($0.date)}
+        let newData = withoutToday + [workoutData];
+        
         let jsonEncoder = JSONEncoder()
         do {
-            let json = try jsonEncoder.encode(workoutData)
-            FileSystem().save(filename: "workout.json", data: json)
+            let json = try jsonEncoder.encode(WorkoutsSaveData(workouts: newData))
+            FileSystem().save(filename: "workouts.json", data: json)
         } catch {
             print("could not save")
         }
     }
     
     public func load() {
+        let workouts = loadAll()
+        let workout = workouts.first (where: { entry in Calendar.current.isDateInToday(entry.date) })
+    
+        if let foundWorkout = workout {
+            self.steps = foundWorkout.steps
+            self.distanceMeters = foundWorkout.meters
+            self.lastUpdateTime = foundWorkout.date
+        }
+    }
+    
+    public func loadAll() -> [WorkoutSaveData] {
         let jsonDecoder = JSONDecoder()
         do {
-            let optionalData = FileSystem().load(filename: "workout.json")
+            let optionalData = FileSystem().load(filename: "workouts.json")
             if let data = optionalData {
-                let workoutData = try jsonDecoder.decode(WorkoutSaveData.self, from: data)
-                self.steps = workoutData.steps
-                self.distanceMeters = workoutData.meters
-                self.lastUpdateTime = workoutData.date
+                let workoutData = try jsonDecoder.decode(WorkoutsSaveData.self, from: data)
+                return workoutData.workouts.suffix(500)
             }
-         
+            return []
         } catch {
-            print("could not save")
+            print("Could not load workout data \(error)")
+            return []
         }
     }
     

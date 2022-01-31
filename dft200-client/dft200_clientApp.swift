@@ -48,12 +48,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func receiveWakeNotification(sender: AnyObject){
         NSLog("Reveived wake notification, starting timer");
+        self.bleConnection.start()
         self.updateTimer?.start()
+    
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         DispatchQueue.global(qos: .userInitiated).async {
-            startHttpServer(bleConnection: self.bleConnection)
+            startHttpServer(bleConnection: self.bleConnection, workout: self.workout)
         }
         
         let view = NSHostingView(rootView: ContentView()

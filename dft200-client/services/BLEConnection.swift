@@ -16,7 +16,10 @@ open class BLEConnection: NSObject, CBCentralManagerDelegate, ObservableObject {
 
     override init() {
         super.init();
-
+        self.start()
+    }
+    
+    public func start() {
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
         print("Central Manager State: \(self.centralManager.state)")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
